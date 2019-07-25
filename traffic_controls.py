@@ -1,4 +1,4 @@
-from gpiozero import LED, Button
+from gpiozero import LED
 from time import sleep
 
 
@@ -6,22 +6,23 @@ Red = LED(17)
 Yellow = LED(27)
 Green = LED(22)
 
-while True:
-	Red.on()
-	sleep(3)
-	print("At a halt")
-	Red.off()
-	sleep(1)
+def red():
+    Red.on()
+    sleep(3)
+    Red.off()
+    sleep(1)
+    return("Red On ")
+def amber():
+    Yellow.on()
+    sleep(3)
+    Yellow.off()
+    sleep(1)
+    return(" Yellow on")
+def green():
+    Green.on()
+    sleep(3)
+    Green.off()
+    sleep(1)
+    return(" Green on")
 
-	Yellow.on()
-	sleep(3)
-	print("In transit")
-	Yellow.off()
-	sleep(1)
-
-	Green.on()
-	sleep(3)
-	print("On the go")
-	Green.off()
-	sleep(1)
 
