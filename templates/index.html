@@ -5,34 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="Stylesheet" type="text/css" href="/css/style.css">
+    <link rel="Stylesheet" type="text/css" href="../css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"> -->
+
     <title>Document</title>
+    <style>
+        .bg1 {
+          background: url('../static/img/car.jpg') center center;
+          /* background: url(test.jpg) center center; */
+          opacity: .8;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+            
+        }
+        
+        #view{
+            text-align: center;
+        }
+        button{
+            
+        
+        }
+        
+        </style>
 </head>
-<body>
-    <div class="container-fluid">
-        <h1 class="h2 alert alert-secondary text-center">Welcome to Smart Route</h1>
-        <h2 class="h3 alert alert-info text-center">Your Solution to avoiding traffic conjestion</h2>
+<body class="bg1">
+  
+  <div class="container">
+    <div class="row col-md-12">
+
     </div>
-   
-    <div class="container-fluid">
+    <h1 class=" text-center text-lg"><b>Welcome to Smart Route</b></h1>
+    <h2 class="alert alert-info text-center" style="font-family: monospace;"><i>Your Solution to avoiding traffic conjestion</i></h2>
+    
+    <div class="row">
+      <!-- left col -->
+      <div class="col-3 border rounded border-dark">    
+        <button onclick="return setInterval(changeLights(),5000);" id = "view" class="btn btn-primary btn-block btn-lg mb-1">View Status</button>
+        <button id="check" class="btn btn-warning btn-block btn-lg mt-1" onclick="return show_color();"> check</button>
+      </div>
+      <!-- .left col -->
+
+      <!-- right col -->
+       <div class="col-9 border rounded border-dark">
         <div class="row">
-        <div col-3>    
-        <button onclick="setInterval(changeLights,5000)">View Status</button>
-	</div>
-	<div col-9>
-	<img id="light" src="/static/img/red.png" width="50%" height="50%">
-        </div>    
+            <div class="col-3">
+            <img id="red" style="display:block;" src="../static/img/red.png" class="img img-thumbnail img-responsive rounded-circle ">
+          </div> 
+          <div class="col-3">
+            <img id="yellow" style="display:none;" src="../static/img/yellow.png" class="img img-thumbnail img-responsive rounded-circle ">
+          </div> 
+          <div class="col-3">
+              <img id="green" style="display:none;" src="../static/img/green.png" class="img img-thumbnail img-responsive rounded-circle ">
+          </div> 
         </div>
+        <div class="row">
+            <div class="col-3">
+                <img id="light" style="" src="../static/img/red.png" class="img img-thumbnail img-responsive rounded-circle ">
+              </div> 
         </div>
+
+        
+        
+      </div>
+        
+      
+         <!-- . right col -->
+    </div>
+    
+  </div>
 <script>
-var list = ["/static/img/red.png","static/img/yellow.png","static/img/green.png"]
+var list = ["../static/img/red.png","../static/img/yellow.png","../static/img/green.png"]
 var index = 0;
 function changeLights() {
-     index = index + 1;      
-if (index == list.length) 
-index = 0;      
-var image = document.getElementById('light');     
-image.src=list[index]; } 
+  index = index + 1;      
+  if (index == list.length) 
+  index = 0;      
+  var image = document.getElementById('light');     
+  image.src=list[index]; 
+  }
+  
+  function show_color(){
+    var red = document.getElementById("red");
+    var yellow = document.getElementById("yellow");
+    var green = document.getElementById("green");
+
+    index = index + 1;
+    switch (index){
+      case 0:
+        red.style.display = "block";
+        yellow.style.display = "none";
+        green.style.display = "none";
+        break;
+        
+        case 1:
+        red.style.display = "none";
+        yellow.style.display = "block";
+        green.style.display = "none";
+        break;
+          
+      case 2:
+        red.style.display = "none";
+        yellow.style.display = "none";
+        green.style.display = "block";
+        break;
+      default:
+        index = 0;
+        red.style.display = "block";
+        yellow.style.display = "none";
+        green.style.display = "none";
+      
+
+    }
+  }
 </script>
 
 
@@ -40,6 +126,21 @@ image.src=list[index]; }
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+    <!-- <script>
+      $(document).ready(function(){
+        $("#check").click(function (){
+          var index = 0;
+          var num = index%2;
+          while(num){
+            window.setInterval(function(){
+              show_color(num);
+            }, 5000);
+            index = index+1;
+          }
+          
+        });
+        
+      });
+    </script> -->
 </body>
 </html>

@@ -1,4 +1,5 @@
 body {
-    background: url('/img/bg3.jpg');
+    background: url('..static/img/traffic.png');
     background-repeat: no-repeat;
+    background: grey;
 }
